@@ -29,9 +29,9 @@ const Switch = ({ onButtonClick }: Props) => {
   return (
     <div className="indicator-switch">
       <div className="number-indicator">
-      <p id="indicator">1</p>
-      <p id="indicator">2</p>
-      <p id="indicator">3</p>
+      <p id="indicator1">1</p>
+      <p id="indicator2">2</p>
+      <p id="indicator3">3</p>
       </div>
       <div className="tri-state-toggle" ref={switchRef}>
         <input
