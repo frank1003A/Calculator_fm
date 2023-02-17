@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap');
+
+
+*::before,
+*:after {
+  box-sizing: border-box;
+  --radius: 8px;
+  --bg-main: hsl(222, 26%, 31%);
+  --bg-toggle: hsl(223, 31%, 20%);
+  --bg-screen: hsl(224, 36%, 15%);
+  --key-bg: hsl(225, 21%, 49%);
+  --key-shadow: hsl(224, 28%, 35%);
+  --toggle-bg: hsl(6, 63%, 50%);
+  --toggle-shadow: hsl(6, 70%, 34%);
+  --key-bg-light: hsl(30, 25%, 89%);
+  --key-shadow-light: hsl(28, 16%, 65%);
+  --text-primary: hsl(221, 14%, 31%);
+  --text-secondary: hsl(0, 0%, 100%);
+  --hoverkey: hsl(186deg 38% 58%);
+  --hovertoggle: hsl(6, 61%, 55%);
+  --hover: hsl(0, 0%, 100%);
+}
+
+[data-theme="theme1"] {
+  --bg-main: hsl(222, 26%, 31%);
+  --bg-toggle: hsl(223, 31%, 20%);
+  --bg-screen: hsl(224, 36%, 15%);
+
+  --key-bg: hsl(225, 21%, 49%);
+  --key-shadow: hsl(224, 28%, 35%);
+  --toggle-bg: hsl(6, 63%, 50%);
+  --toggle-shadow: hsl(6, 70%, 34%);
+  --key-bg-light: hsl(30, 25%, 89%);
+  --key-shadow-light: hsl(28, 16%, 65%);
+  --text-primary: hsl(221, 14%, 31%);
+  --text-secondary: hsl(0, 0%, 100%);
+  --text-variant: hsl(0, 0%, 100%);
+  --white: hsl(0, 0%, 100%);
+  --hoverkey: hsl(224deg 51% 76%);
+  --hovertoggle: hsl(6, 61%, 55%);
+  --hover: hsl(0, 0%, 100%);
+}
+
+//hsl(221, 14%, 31%)
+
+[data-theme="theme2"] {
+  --bg-main: hsl(0, 0%, 90%);
+  --bg-toggle: hsl(0, 5%, 81%);
+  --bg-screen: hsl(0, 0%, 93%);
+  --key-bg: hsl(185, 42%, 37%);
+  --key-shadow: hsl(185, 58%, 25%);
+  --toggle-bg: hsl(25, 98%, 40%);
+  --toggle-shadow: hsl(25, 99%, 27%);
+  --key-bg-light: hsl(45, 7%, 89%);
+  --key-shadow-light: hsl(35, 11%, 61%);
+  --text-primary: hsl(60, 10%, 19%);
+  --text-secondary: hsl(0, 0%, 100%);
+  --text-variant: hsl(60, 10%, 19%);
+  --white: hsl(0, 0%, 100%);
+  --hoverkey: hsl(185deg 41% 56%);
+  --hovertoggle: hsl(25deg 82% 51%);
+  --hover: hsl(0, 0%, 100%);
+}
+
+[data-theme="theme3"] {
+  --bg-main: hsl(268, 75%, 9%);
+  --bg-toggle: hsl(268, 71%, 12%);
+  --bg-screen: hsl(268, 71%, 12%);
+  --key-bg: hsl(281, 89%, 26%);
+  --key-shadow: hsl(285, 91%, 52%);
+  --toggle-bg: hsl(176, 100%, 44%);
+  --toggle-shadow: hsl(177, 92%, 70%);
+  --key-bg-light: hsl(268, 47%, 21%);
+  --key-shadow-light: hsl(290, 70%, 36%);
+  --text-primary: hsl(52, 100%, 62%);
+  --text-secondary: hsl(198, 20%, 13%);
+  --text-variant: hsl(52, 100%, 62%);
+  --white: hsl(0, 0%, 100%);
+  --hoverkey: hsl(281, 46%, 40%);
+  --hovertoggle: hsl(176deg 86% 73%);
+  --hover: hsl(267deg 54% 44%);
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'League Spartan', sans-serif;
+}
