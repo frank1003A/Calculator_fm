@@ -10,7 +10,7 @@ interface Props {
 
 const Form = ({ output, handleButtonClick, reset, del, equalfn }: Props) => {
   return (
-    <form className="calculator" aria-label="Calculator" role="application">
+    <form className="calculator" aria-label="Calculator">
       <div className="screen" tabIndex={0}>
         <output id="display" aria-live="polite">
           {output}
