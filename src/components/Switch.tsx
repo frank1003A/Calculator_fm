@@ -39,6 +39,7 @@ const Switch = ({ onButtonClick }: Props) => {
           type="radio"
           name="toggle"
           id="one"
+          aria-label="color-scheme-1"
           onClick={() => onButtonClick("theme1")}
         />
         <input
@@ -46,6 +47,7 @@ const Switch = ({ onButtonClick }: Props) => {
           type="radio"
           name="toggle"
           id="two"
+          aria-label="color-scheme-2"
           onClick={() => onButtonClick("theme2")}
         />
         <input
@@ -53,6 +55,7 @@ const Switch = ({ onButtonClick }: Props) => {
           type="radio"
           name="toggle"
           id="three"
+          aria-label="color-scheme-3"
           onClick={() => onButtonClick("theme3")}
         />
       </div>
