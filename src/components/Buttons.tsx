@@ -151,7 +151,7 @@ const Buttons = ({ handleButtonClick, reset, del, equalfn }: Props) => {
       {buttonValues.map((btn, index) => (
         <>
           <button
-            key={index}
+            key={`${index}_${btn.title}`}
             type="button"
             id={btn.id}
             onClick={
