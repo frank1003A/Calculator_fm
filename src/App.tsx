@@ -27,37 +27,20 @@ function App() {
     setOutput((prevOutput) => {
       let newOutput = prevOutput + value;
 
-      // check zero's
-      if (output === "0" && value === "0") {
-        // basically move the zero value 1 index forward
-        // and a space to before the first zero to bypass initial check
-        newOutput = " " + value;
-      } else if (output === "0" && value !== "0") {
-        // first zero check which stops the initial zero
-        // from computing and act as a placeholder
-        newOutput = value;
-      }
+      // handle initial zero's
+      newOutput = handleInitialZero(value, prevOutput);
+
+      // handles consecutive operator
+      newOutput = handleArithmeticOperatorLimit(newOutput);
+
+      // limit decimal points for each number to one
+      newOutput = handleDecimalLimits(value, newOutput);
 
       // limit the users input to just 15 numbers
-      if (newOutput.length > displayMax) {
-        return newOutput.slice(0, displayMax);
-      }
+      newOutput = handleNumberLimit(newOutput);
 
       // clear result
-      if (
-        passed &&
-        (value === "+" ||
-          value === "-" ||
-          value === "/" ||
-          value === "x" ||
-          value === ".")
-      ) {
-        setPassed(false);
-        newOutput = prevOutput + value;
-      } else if (passed) {
-        setPassed(false);
-        reset();
-      }
+      handleClearResult(value, prevOutput);
 
       return newOutput;
     });
@@ -85,6 +68,67 @@ function App() {
       const num: number = numbers[i];
       switchOperator(op, num);
       i++;
+    }
+  };
+
+  const handleInitialZero = (value: string, initial: string) => {
+    let current = value;
+    let init = initial;
+    if (init === "0" && current === "0") {
+      // basically move the zero value 1 index forward
+      // and a space before the first zero to bypass initial check
+      return " " + current;
+    } else if (init === "0" && current !== "0") {
+      // first zero check which stops the initial zero
+      // from computing and act as a placeholder
+      return current;
+    } else {
+      return initial + current;
+    }
+  };
+
+  const handleNumberLimit = (out: string) => {
+    let newOutput = out;
+    if (newOutput.length > displayMax) {
+      return newOutput.slice(0, displayMax);
+    } else {
+      return newOutput;
+    }
+  };
+
+  const handleDecimalLimits = (value: string, newOutput: string) => {
+    let fm = "";
+    if (newOutput.endsWith(".") && value === ".") {
+      // Split the newOutput string into an array of numbers.
+      const numbers = newOutput.split("+");
+      // Replace the last number in the array with a new version that has at most one decimal point.
+      numbers[numbers.length - 1] = numbers[numbers.length - 1].replace(
+        /\.+/g,
+        "."
+      );
+      // Join the numbers array back into a string.
+      fm = numbers.join("+");
+    } else {
+      fm = newOutput;
+    }
+    return fm;
+  };
+
+  const formatOperator = (str: string) => str.replace(/([x/+-])+/g, "$1");
+
+  const handleArithmeticOperatorLimit = (newOutput: string): string => {
+    return formatOperator(newOutput);
+  };
+
+  const handleClearResult = (value: string, prev: string) => {
+    let currentValue = value;
+    let initValue = prev;
+    if (passed && ["+", "-", "x", "/"].includes(value)) {
+      setPassed(false);
+      setOutput(initValue + currentValue);
+    } else if (passed && !["+", "-", "x", "/"].includes(value)) {
+      setPassed(false);
+      reset();
     }
   };
 
