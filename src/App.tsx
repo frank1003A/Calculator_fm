@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import React, { useState } from "react";
+import React, {useState}  from 'react';
 import "./App.scss";
 import Footer from "./components/Footer";
 import Form from "./components/Form";
@@ -12,19 +12,34 @@ function App() {
   const [dataTheme, setDataTheme] = useState<THEME["theme"]>("theme1");
   const [output, setOutput] = useState<string>("0");
   const [passed, setPassed] = useState<boolean>(false);
+  const [DotFlag,setDotflag] = useState<boolean>(false); // to check if the Last value has a dot
 
   const numbers: number[] = output.split(/[\+\-\x\/]/).map(Number);
 
   const operators: string[] = output
     .split("")
-    .filter((char) => /\+|\-|\x|\//.test(char));
+    .filter((char: string) => /\+|\-|\x|\//.test(char));
 
   let result: number = numbers[0];
 
   const displayMax = 15;
 
   const handleButtonClick = (value: string) => {
-    setOutput((prevOutput) => {
+
+    // if the user clicks on an operator, set the lastNumberDotFlag to false
+    if (["+", "-", "x", "/"].includes(value)) {
+      setDotflag(false);
+    }
+
+    // if the user clicks on dot, set the lastNumberDotFlag to true and prevent multiple dots
+    if (value === "." && DotFlag==true) {
+      return;
+    }
+    else if (value === "." && DotFlag==false){
+      setDotflag(true);
+    }
+
+    setOutput((prevOutput: string) => {
       let newOutput = prevOutput + value;
 
       // handle initial zero's
@@ -61,7 +76,7 @@ function App() {
     setOutput(parseFloat(result.toFixed(2)).toString());
     setPassed(true);
   };
-
+  
   const calculateResult = () => {
     let i: number = 1;
     for (const op of operators) {
@@ -87,6 +102,7 @@ function App() {
     }
   };
 
+
   const handleNumberLimit = (out: string) => {
     let newOutput = out;
     if (newOutput.length > displayMax) {
@@ -98,9 +114,13 @@ function App() {
 
   const handleDecimalLimits = (value: string, newOutput: string) => {
     let fm = "";
-    if (newOutput.endsWith(".") && value === ".") {
+
+
+
+    if (newOutput.endsWith(".") || value === ".") {
       // Split the newOutput string into an array of numbers.
       const numbers = newOutput.split("+");
+      console.log("Numbers ",numbers);
       // Replace the last number in the array with a new version that has at most one decimal point.
       numbers[numbers.length - 1] = numbers[numbers.length - 1].replace(
         /\.+/g,
@@ -151,13 +171,19 @@ function App() {
 
   const reset = () => {
     setOutput("0");
+    setDotflag(false);
   };
 
   const del = () => {
     let txt = output;
     if (result.toString() === "Infinity" || result.toString() === "NaN") {
       setOutput("0");
+      setDotflag(false);
     } else {
+      // if the last value is a dot, set the dotFlag to false before deleting
+      if(txt.endsWith(".")){
+        setDotflag(false);
+      }
       setOutput(txt.slice(0, txt.length - 1));
     }
   };
